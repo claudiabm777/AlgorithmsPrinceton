@@ -17,11 +17,10 @@ public class QuickUnion {
 	}
 	
 	protected int root(int p){
-		if(numbers[p] == p){
-			return numbers[p];
-		}else{
-			return root(numbers[p]);
+		while(p != numbers[p]){
+			p = numbers[p];
 		}
+		return p;
 	}
 	
 	public void union(int p, int q) throws Exception{
@@ -44,26 +43,6 @@ public class QuickUnion {
 			int rootQ = root(q);
 			return rootP == rootQ;
 			
-		}
-	}
-	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		System.out.println("Introduce n: ");
-		int N = in.nextInt();
-		QuickUnion uf = new QuickUnion(N);
-		System.out.println("Introduce pairs: ");
-		while (in.hasNext()){
-			int p = in.nextInt();
-			int q = in.nextInt();
-			try{
-				if (!uf.connected(p, q)){
-					uf.union(p, q);
-					System.out.println(Arrays.toString(uf.numbers));
-				}
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
 		}
 	}
 
